@@ -1,0 +1,58 @@
+/* CSS Reset */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,caption,tbody,tfoot,thead,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}em{font-style:italic}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section, picture{display:block}body{line-height:1}ol,ul{list-style:none;}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:1em}*{box-sizing:border-box}
+
+/* Global Layout/Template Styles */
+body{background-color:#ddd;font-size:15px;font-family: 'Lato', sans-serif;}
+h1,h4{font-weight: bold;}
+h2{font-size: .95em;}
+.container{margin:0 auto;}
+#main{position:relative;float: right;width: 60%;padding:0 2.5%;background-color: #F5F1F1;}
+
+/* Global Text Styles */
+#main h3{display:inline-block;margin-top:1em; text-transform:capitalize;color: #177CA2;font-size: 1.2em;font-weight: bold;}
+#main h4{color:#177CA2;font-size:1.1em;margin-bottom:1em;text-transform:capitalize}
+
+/* Sidebar */
+aside{width:40%;position: fixed;left: 0;top: 0;overflow: hidden;overflow-y: auto;height: 100vh;}
+#nav{padding:.5em;margin:.5em;text-transform: capitalize}
+#nav h1{font-size:.9em}
+#nav > ul{background-color:#fff;border-bottom:2px solid #ccc}
+#nav h1{text-transform: uppercase; background-color:teal;padding:1em;color:#fff}
+
+/* Sidebar Accordions */
+.accordion-header{padding: .9em;font-weight:bold;color:#595A5A;cursor:pointer;transition:.4s color}
+.accordion-header:hover{color:#000}
+.accordion-content{display:none;padding:0 .7em}
+.accordion-content li a{border-left:4px solid lightslategrey;padding:.5em .7em;color:lightslategrey;display:block;font-weight:bold;font-size:.9em;margin:0 .25em 5px .25em;text-decoration: none;transition: border .35s, color .25s;}
+.accordion-content li a:hover,.accordion-content li .focus{border-color:purple;color:purple}
+
+/* Main Content */
+.item{padding:1.5em;background-color:#fff;margin: 1em 0;transition:1s background-color}
+.item.focus{background-color:rgba(255, 251, 158, 0.69);}
+.item:after,#main h3:after{content:'';display:block;height:0;clear:both;visibility:hidden}
+#main table{display:table;text-align:left;border:2px #ddd solid;border-radius:5px;width:100%}
+#main tr{border-bottom:2px solid #ddd}
+#main td{text-transform: capitalize}
+#main th{width:25%;border-right:2px solid #ddd;color:#177CA2;background-color:rgba(217, 231, 236, 0.63)}
+#main th,#main td{display:table-cell;padding:1em}
+#main code{text-transform: none;color:purple;font-family: "Courier New",Courier,"Lucida Sans Typewriter","Lucida Typewriter",monospace;font-weight:bold}
+
+/* Icons */
+@font-face{font-family:'icon-font';src:url(../fonts/icon-font.eot?6quqad);src:url(../fonts/icon-font.eot?6quqad#iefix) format("embedded-opentype"),url(../fonts/icon-font.ttf?6quqad) format("truetype"),url(../fonts/icon-font.woff?6quqad) format("woff"),url(../fonts/icon-font.svg?6quqad#icon-font) format("svg");font-weight:400;font-style:normal}
+.icon-usage,.icon-data-type{display:inline-block;text-transform:capitalize;text-align: center;position:relative;padding-left: 27px;line-height: 21px;margin-left: 1.5em;font-weight: bold;color: #525252;font-size: .9em;}
+.icon-data-type{font-size:1em;text-align:left;font-weight:normal;position: relative;display: inline;margin-left: 0;}
+.icon-usage:first-child{margin-left:0}
+.icon-usage:before,.icon-data-type:before{z-index: 2;position:absolute;height: 20px;width: 20px;left: 1px;top: 0;color: #fff;font-size: 17px;line-height: 23px;font-family:'icon-font';speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;content:"\e900"}
+.icon-data-type:before{background-color: #A6A6FB;content:'\e901';line-height: 20px;text-align: center;}
+.icon-usage:after{position:absolute;left:0;top:0;background-color: #F7D70A;width: 23px;height: 23px;border-radius:50%;content:'';z-index: 1;}
+.community:after{background-color: #07B307;}
+.giving_tree:after{background-color:#9F58E6;}
+
+/* Mobile */
+@media screen and (max-width:700px) {
+    aside{float:none;width:100%;margin:.5em 0;position:static;height:auto;overflow:hidden}
+    #main{float:none;width: auto;margin: .5em 1em;padding: 1.5em 1em;}
+    #main th{width:40%}
+    .item{margin:1em 0;box-sizing:border-box}
+    .icon-usage{display:block;margin-left:0;line-height:27px}
+}

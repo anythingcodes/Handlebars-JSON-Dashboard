@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7 lte-ie9" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8 lte-ie9" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9 lte-ie9" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="lte-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+	<head>
+		<title>JSON-Based Dashboard, à la Handlebars</title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+		<link href="//fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+		<link type="text/css" rel="stylesheet" href="css/common.css" />
+	</head>
+
+	<body>
+
+		<!-- Content -->
+		<aside>
+			<nav id="nav">
+				<h1>Field Groups</h1>
+			</nav>
+		</aside>
+		<main id="main"></main>
+
+		<!-- Scripts -->
+		<script type="text/x-handlebars-template" id="nav-general">
+			<ul>
+				<li><h2 class="accordion-header">General Info</h2>
+					<ul class="capitalize accordion-content">
+						{{#each objects}}
+							{{#unless containing_object}}
+							<li><a href="#" data-key="{{parent_id}}_{{name}}">{{#formatName}}{{name}}{{/formatName}}</a></li>
+							{{/unless}}
+						{{/each}}
+					</ul>
+				</li>
+			</ul>
+		</script>
+		<script type="x-handlebars-template" id="nav-container">
+		        {{#each objects}}
+					{{#if containing_object.properties.length}}
+						<ul>
+							<li><h2 class="accordion-header">{{#formatName}}{{name}}{{/formatName}}</h2>
+								<ul class="accordion-content">
+									{{#containing_object.properties}}
+										<li><a href="#" data-key="{{parent_id}}_{{name}}">{{#formatName}}{{name}}{{/formatName}}</a></li>
+									{{/containing_object.properties}}
+								</ul>
+							</li>
+						</ul>
+					{{/if}}
+		        {{/each}}
+		    </ul>
+		</script>
+		<script type="x-handlebars-template" id="main-container">
+			{{#each objects}}
+				{{#unless containing_object.properties.length}}
+					<div class="item" data-key="{{parent_id}}_{{name}}">
+						<h4>{{#formatName}}{{name}}{{/formatName}}</h4>
+						<table>
+							<tr>
+								<th>Type</th>
+								<td><span class="icon-data-type"></span>{{data_type}}</td>
+							</tr>
+							<tr>
+								<th>Usage</th>
+								<td>
+									{{#formatUsage}}{{app_keys}}{{/formatUsage}}
+								</td>
+							</tr>
+							<tr>
+								<th>EverTrue Field Name</th>
+								<td><code>{{name}}</code></td>
+							</tr>
+						</table>
+					</div>
+				{{else}}
+					<h3>{{#formatName}}{{name}}{{/formatName}}</h3>
+					{{#containing_object.properties}}
+					<div class="item" data-key="{{parent_id}}_{{name}}">
+						<h4>{{#formatName}}{{name}}{{/formatName}}</h4>
+						<table>
+							<tr>
+								<th>Type</th>
+								<td><span class="icon-data-type"></span>{{data_type}}</td>
+							</tr>
+							<tr>
+								<th>Usage</th>
+								<td>
+									{{#formatUsage}}{{app_keys}}{{/formatUsage}}
+								</td>
+							</tr>
+							<tr>
+								<th>EverTrue Field Name</th>
+								<td><code>{{name}}</code></td>
+							</tr>
+						</table>
+					</div>
+					{{/containing_object.properties}}
+				{{/unless}}
+			{{/each}}
+		</script>
+
+		<!-- CDN references with fallbacks -->
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script>
+		if (typeof jQuery == 'undefined')
+		    document.write(unescape("%3Cscript src='js/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+		<script>
+		if (typeof Handlebars == 'undefined')
+		    document.write(unescape("%3Cscript src='js/handlebars.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+
+		<!-- Custom JS -->
+		<script type="text/javascript" src="js/common.js"></script>
+
+	</body>
+</html>
